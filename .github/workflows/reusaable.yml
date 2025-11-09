@@ -1,8 +1,21 @@
 name: resuable workflows
-on: workflow_call
+on: 
+    workflow_call:
+        inputs:
+            cache_key:
+                required: false
+                type: string
+                default: dist-files
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
             - name: output info
               run: echo "This is a reusable workflow"
+            - name: get code
+              uses: actions/download-artifact@v4 
+              with:
+                key: ${{inputs.cache_key}}
+            - name: show files
+              run: ls

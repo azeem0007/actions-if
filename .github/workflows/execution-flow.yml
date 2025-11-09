@@ -70,7 +70,8 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusaable.yml
-    
+    with:
+      cache_key: dist-files
 
   report:
     needs: [lint, test, build, deploy]
