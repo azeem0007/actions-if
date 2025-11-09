@@ -1,6 +1,7 @@
 name: to check and implement matrix strategy
 on:
   push:
+    branches: [ main , master ]
 jobs:
   build:
     continue-on-error: true
