@@ -9,6 +9,12 @@ jobs:
       matrix:
         node-version: [14, 16, 18]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+            - os: ubuntu-latest
+              node-version: 20
+        exclude:
+          - os: macos-latest
+            node-version: 14
     steps:
       - name: check out code
         uses: actions/checkout@v4
