@@ -1,0 +1,26 @@
+name: to check and implement matrix strategy
+on:
+  push:
+jobs:
+  build:
+    continue-on-error: true
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: check out code
+        uses: actions/checkout@v4
+
+      - name: install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix['node-version'] }}
+
+      - name: install dependencies
+        run: npm install
+
+      - name: run tests
+        run: npm test
+
