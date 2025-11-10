@@ -72,7 +72,13 @@ jobs:
     uses: ./.github/workflows/reusaable.yml
     with:
       cache_key: dist-files
-
+  print-output:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: show output from reusable workflow
+        run: |
+         echo "Deployment status: ${{needs.deploy.outputs.result}}"
   report:
     needs: [lint, test, build, deploy]
     if: failure()
